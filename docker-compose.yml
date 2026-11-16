@@ -1,0 +1,5 @@
+services:
+  pontos:
+    build: .
+    ports:
+      - "5132:5132"

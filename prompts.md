@@ -11,3 +11,8 @@ A GS permite IA como copiloto, desde que os prompts fiquem registrados e a gente
 
 - **Pedido:**Avaliar se valia separar uma camada Application.
 - **Aproveitado:** projeto `LuzVital.Pontos.Application`, para onde foram os serviços que antes ficavam dentro de `Infrastructure`.
+
+## 15/11/2026 · Arthur · Claude Code
+
+- **Pedido:** encurtar o README e facilitar a execução para quem não tem o .NET instalado.
+- **Aproveitado:** o README reescrito em menos da metade do tamanho, o `Dockerfile` e o `docker-compose.yml` (testados: `docker compose up --build` sobe a API na porta 5132) e o `Directory.Build.props`, que deixa o projeto rodar em versões do .NET mais novas que a 8.

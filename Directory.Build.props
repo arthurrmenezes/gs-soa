@@ -1,0 +1,6 @@
+<Project>
+  <!-- Permite rodar com um .NET mais novo que o 8 (9, 10...) sem instalar o 8. -->
+  <PropertyGroup>
+    <RollForward>Major</RollForward>
+  </PropertyGroup>
+</Project>
