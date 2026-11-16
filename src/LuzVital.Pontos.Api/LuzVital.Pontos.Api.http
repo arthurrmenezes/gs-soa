@@ -1,0 +1,68 @@
+@host = http://localhost:5132
+
+### Todos os pontos
+GET {{host}}/api/pontos
+
+### Pontos de um bairro (é o que o app usa)
+GET {{host}}/api/pontos?bairro=Mooca
+
+### Pontos que servem para quem usa oxigênio em casa e estão funcionando
+GET {{host}}/api/pontos?dependencia=OxigenioDomiciliar&somenteDisponiveis=true
+
+### Um ponto
+GET {{host}}/api/pontos/4
+
+### Cadastrar um ponto (fictício)
+POST {{host}}/api/pontos
+Content-Type: application/json
+
+{
+  "nome": "Centro comunitário da Mooca (simulado)",
+  "tipo": "Comunidade",
+  "bairro": "Mooca",
+  "endereco": "Rua Modelo, 700",
+  "horario": "Todos os dias, 8h às 22h",
+  "temGerador": true,
+  "tomadas": 12,
+  "aceitaEquipamentoMedico": true,
+  "guardaMedicamento": false,
+  "acessivel": true
+}
+
+### Regra de negócio (422): aceitar aparelho médico sem ter gerador
+POST {{host}}/api/pontos
+Content-Type: application/json
+
+{
+  "nome": "Padaria sem gerador (simulado)",
+  "tipo": "Comercio",
+  "bairro": "Mooca",
+  "endereco": "Rua Modelo, 12",
+  "horario": "Todos os dias, 6h às 20h",
+  "temGerador": false,
+  "tomadas": 3,
+  "aceitaEquipamentoMedico": true,
+  "guardaMedicamento": false,
+  "acessivel": true
+}
+
+### Registrar a situação: funcionando com 3 tomadas livres
+POST {{host}}/api/pontos/4/situacoes
+Content-Type: application/json
+
+{ "situacao": "Funcionando", "tomadasLivres": 3 }
+
+### Registrar a situação: lotado
+POST {{host}}/api/pontos/4/situacoes
+Content-Type: application/json
+
+{ "situacao": "Lotado", "observacao": "Fila na porta" }
+
+### Histórico do ponto
+GET {{host}}/api/pontos/4/situacoes
+
+### Resumo por bairro
+GET {{host}}/api/pontos/resumo
+
+### Para onde ir: cruza com os alertas da API C# principal (porta 5131)
+GET {{host}}/api/recomendacoes?bairro=Mooca&dependencia=MedicamentoRefrigerado
